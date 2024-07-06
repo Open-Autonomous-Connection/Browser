@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="340.0" maxWidth="600.0" prefHeight="340.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.openautonomousconnection.browser.MessageDialog">
+    <children>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="90.0" layoutY="15.0" prefHeight="65.0" prefWidth="420.0" text="IMPORTANT MESSAGE" textAlignment="CENTER" textFill="RED">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+        <Label fx:id="txtServer" alignment="TOP_LEFT" layoutX="90.0" layoutY="80.0" prefHeight="230.0" prefWidth="420.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non diam phasellus vestibulum lorem sed. Vulputate sapien nec sagittis aliquam malesuada bibendum. Purus viverra accumsan in nisl. Arcu ac tortor dignissim convallis. Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan. Risus nec feugiat in fermentum posuere urna. Tristique et egestas quis ipsum suspendisse ultrices. Id consectetur purus ut faucibus pulvinar elementum. Nisi quis eleifend quam adipiscing vitae. Sagittis purus sit amet volutpat consequat mauris." wrapText="true">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
