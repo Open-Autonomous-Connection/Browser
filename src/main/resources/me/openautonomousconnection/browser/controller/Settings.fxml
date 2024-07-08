@@ -1,59 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="255.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="me.openautonomousconnection.browser.controller.Settings">
+
+<AnchorPane prefHeight="255.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.openautonomousconnection.browser.controller.Settings">
     <children>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="15.0" prefHeight="55.0"
-               prefWidth="260.0" text="DNS Settings" textAlignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="15.0" prefHeight="55.0" prefWidth="260.0" text="DNS Settings" textAlignment="CENTER">
             <font>
-                <Font size="25.0"/>
+                <Font size="25.0" />
             </font>
         </Label>
         <Label layoutX="15.0" layoutY="85.0" prefHeight="25.0" prefWidth="35.0" text="Host">
             <font>
-                <Font size="15.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
         <Label layoutX="15.0" layoutY="115.0" prefHeight="25.0" prefWidth="35.0" text="Port">
             <font>
-                <Font size="15.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="hostInput" layoutX="95.0" layoutY="85.0" prefHeight="25.0" prefWidth="170.0" promptText="Host"
-                   text="82.197.95.202"/>
-        <TextField fx:id="portInput" layoutX="95.0" layoutY="115.0" prefHeight="25.0" prefWidth="170.0"
-                   promptText="Port" text="9382"/>
-        <Button fx:id="btnSave" layoutX="250.0" layoutY="180.0" mnemonicParsing="false" onAction="#onSaveClick"
-                prefHeight="55.0" prefWidth="100.0" text="Save"/>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="15.0" prefHeight="55.0"
-               prefWidth="260.0" text="API Settings" textAlignment="CENTER">
+        <TextField fx:id="hostInput" layoutX="95.0" layoutY="85.0" prefHeight="25.0" prefWidth="170.0" promptText="Host" text="82.197.95.202" />
+        <TextField fx:id="portInput" layoutX="95.0" layoutY="115.0" prefHeight="25.0" prefWidth="170.0" promptText="Port" text="9382" />
+        <Button fx:id="btnSave" layoutX="250.0" layoutY="180.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="55.0" prefWidth="100.0" text="Save" />
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="325.0" layoutY="15.0" prefHeight="55.0" prefWidth="260.0" text="API Settings" textAlignment="CENTER">
             <font>
-                <Font size="25.0"/>
+                <Font size="25.0" />
             </font>
         </Label>
         <Label layoutX="290.0" layoutY="85.0" prefHeight="25.0" prefWidth="100.0" text="Username">
             <font>
-                <Font size="15.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
         <Label layoutX="290.0" layoutY="115.0" prefHeight="25.0" prefWidth="100.0" text="Application">
             <font>
-                <Font size="15.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="usernameInput" layoutX="390.0" layoutY="85.0" prefHeight="25.0" prefWidth="170.0"
-                   promptText="Username"/>
-        <TextField fx:id="applicationInput" layoutX="390.0" layoutY="115.0" prefHeight="25.0" prefWidth="170.0"
-                   promptText="Application"/>
+        <TextField fx:id="usernameInput" editable="false" layoutX="390.0" layoutY="85.0" prefHeight="25.0" prefWidth="170.0" promptText="Username" />
+        <TextField fx:id="applicationInput" editable="false" layoutX="390.0" layoutY="115.0" prefHeight="25.0" prefWidth="170.0" promptText="Application" />
         <Label layoutX="290.0" layoutY="145.0" prefHeight="25.0" prefWidth="100.0" text="API Key">
             <font>
-                <Font size="15.0"/>
+                <Font size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="apiKeyInput" layoutX="390.0" layoutY="145.0" prefHeight="25.0" prefWidth="170.0"
-                   promptText="API Key"/>
+        <TextField fx:id="apiKeyInput" editable="false" layoutX="390.0" layoutY="145.0" prefHeight="25.0" prefWidth="170.0" promptText="API Key" />
     </children>
 </AnchorPane>

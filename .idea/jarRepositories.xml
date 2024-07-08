@@ -4,7 +4,27 @@
     <remote-repository>
       <option name="id" value="github" />
       <option name="name" value="github" />
+      <option name="url" value="https://maven.pkg.github.com/unlegitdqrk/unlegitlibrary" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Central Repository" />
+      <option name="url" value="https://repo.maven.apache.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="github" />
+      <option name="name" value="github" />
+      <option name="url" value="https://maven.pkg.github.com/open-autonomous-connection/protocol" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="github" />
+      <option name="name" value="github" />
       <option name="url" value="https://maven.pkg.github.com/unlegitdqrk/*" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="github" />
+      <option name="name" value="github" />
+      <option name="url" value="https://maven.pkg.github.com/unlegitdqrk/unlegitlibrar" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />

@@ -11,15 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import me.openautonomousconnection.browser.Config;
 import me.openautonomousconnection.browser.Main;
 import me.openautonomousconnection.browser.MessageDialog;
 import me.openautonomousconnection.browser.history.HistoryManager;
-import me.openautonomousconnection.protocol.RequestType;
-import me.openautonomousconnection.protocol.Utils;
 import me.openautonomousconnection.protocol.domain.Domain;
 import me.openautonomousconnection.protocol.domain.RequestDomain;
-import me.openautonomousconnection.protocol.packets.DomainPacket;
+import me.openautonomousconnection.protocol.utils.DomainUtils;
+import me.openautonomousconnection.protocol.utils.SiteType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -38,8 +36,6 @@ import java.util.ResourceBundle;
 
 public class Browser implements Initializable {
     public static Browser instance;
-    public boolean domainExistingRequest = false;
-    public boolean pingRequest = false;
     public Button btnHome;
     public Button btnBackward;
     public Button btnReload;
@@ -126,11 +122,11 @@ public class Browser implements Initializable {
         if (url.startsWith("www.")) url = url.substring(4);
         if (!url.startsWith("oac://")) url = "oac://" + url;
 
-        String tld = Utils.getTopLevelDomain(url);
-        String name = Utils.getDomainName(url);
+        String tld = DomainUtils.getTopLevelDomain(url);
+        String name = DomainUtils.getDomainName(url);
 
-        Main.client.sendPacket(new DomainPacket(Main.client.getClientID(), RequestType.EXISTS, null, new RequestDomain(name, tld), null, Config.getApiInformation()));
-        domainExistingRequest = true;
+        // TODO: Navigate
+        Main.protocolBridge.getProtocolClient().resolveSite(new RequestDomain(name, tld));
     }
 
     private void loadLocalDomain(String url) throws IOException, URISyntaxException, ClassNotFoundException {
@@ -232,40 +228,21 @@ public class Browser implements Initializable {
         }
     }
 
-    public void loadDomain(Domain domain) {
-        domainExistingRequest = false;
-        pingRequest = false;
-
-        domainInput.setText("oac://" + domain.name + "." + domain.topLevelDomain + "/");
-
-        Platform.runLater(() -> {
-            try {
-                URL url = new URL(domain.parsedDestination());
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                StringBuilder content = new StringBuilder();
-                try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                    String line;
-                    while ((line = reader.readLine()) != null) content.append(line);
-                }
-
-                webView.getEngine().loadContent(content.toString());
-                if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        });
-    }
-
     public void loadFile(File file) {
-        domainExistingRequest = false;
-        pingRequest = false;
-
         domainInput.setText("oac-local://" + file.getAbsolutePath());
+
         Platform.runLater(() -> {
             webView.getEngine().load(file.toURI().toString());
             if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
+        });
+    }
+
+    public void loadHtml(SiteType siteType, Domain domain, String htmlContent) {
+        domainInput.setText(siteType.name + "://" + domain.name + "." + domain.topLevelDomain);
+
+        Platform.runLater(() -> {
+        webView.getEngine().loadContent(htmlContent);
+        if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
         });
     }
 }

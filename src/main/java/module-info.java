@@ -13,15 +13,11 @@ module me.openautonomousconnection.browser {
     requires java.desktop;
     requires jcefmaven;
     requires jcef;
-    requires me.openautonomousconnection.protocol;
     requires json.simple;
-    requires networksystem;
-    requires networkutils;
-    requires eventsystem;
-    requires configurationutils;
     requires java.sql;
+    requires protocol;
+    requires unlegitlibrary;
 
-    exports me.openautonomousconnection.browser.listener;
     exports me.openautonomousconnection.browser;
     opens me.openautonomousconnection.browser to javafx.fxml;
     exports me.openautonomousconnection.browser.controller;

@@ -15,6 +15,23 @@
         <junit.version>5.10.0</junit.version>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/open-autonomous-connection/protocol</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/unlegitdqrk/unlegitlibrary</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -102,8 +119,8 @@
         </dependency>
         <dependency>
             <groupId>me.openautonomousconnection.protocol</groupId>
-            <artifactId>Protocol</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>protocol</artifactId>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -112,19 +129,9 @@
             <version>122.1.10</version>
         </dependency>
         <dependency>
-            <groupId>me.finn.libraries</groupId>
-            <artifactId>eventsystem</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>me.finn.libraries</groupId>
-            <artifactId>networksystem</artifactId>
-            <version>2.0REWORK-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>me.finn.libraries</groupId>
-            <artifactId>configurationutils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>me.finn.unlegitlibrary</groupId>
+            <artifactId>unlegitlibrary</artifactId>
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
