@@ -1,4 +1,4 @@
 # Project exclude paths
 /target/
-/config.yml
+/config.txt
 /history.txt

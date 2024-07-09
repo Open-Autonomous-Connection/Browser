@@ -4,6 +4,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
+<!--
+  ~ Copyright (C) 2024 Open Autonomous Connection - All Rights Reserved
+  ~
+  ~ You are unauthorized to remove this copyright.
+  ~ You have to give Credits to the Author in your project and link this GitHub site: https://github.com/Open-Autonomous-Connection
+  ~ See LICENSE-File if exists
+  -->
+
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="580.0" prefWidth="855.0"
             xmlns="http://javafx.com/javafx/17.0.2-ea"
             fx:controller="me.openautonomousconnection.browser.controller.Browser">

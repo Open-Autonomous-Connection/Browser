@@ -1,3 +1,11 @@
+/*
+ * Copyright (C) 2024 Open Autonomous Connection - All Rights Reserved
+ *
+ * You are unauthorized to remove this copyright.
+ * You have to give Credits to the Author in your project and link this GitHub site: https://github.com/Open-Autonomous-Connection
+ * See LICENSE-File if exists
+ */
+
 package me.openautonomousconnection.browser.controller;
 
 import javafx.application.Platform;
@@ -15,9 +23,11 @@ import me.openautonomousconnection.browser.Main;
 import me.openautonomousconnection.browser.MessageDialog;
 import me.openautonomousconnection.browser.history.HistoryManager;
 import me.openautonomousconnection.protocol.domain.Domain;
+import me.openautonomousconnection.protocol.domain.LocalDomain;
 import me.openautonomousconnection.protocol.domain.RequestDomain;
 import me.openautonomousconnection.protocol.utils.DomainUtils;
 import me.openautonomousconnection.protocol.utils.SiteType;
+import me.openautonomousconnection.protocol.utils.WebsitesContent;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -84,7 +94,7 @@ public class Browser implements Initializable {
 
     public void onHomeClick(ActionEvent actionEvent) {
         try {
-            navigate("oac://browser-start.root/");
+            navigate(SiteType.PUBLIC.name + "://browser-start.root/");
         } catch (IOException | URISyntaxException | ClassNotFoundException exception) {
             exception.printStackTrace();
         }
@@ -112,21 +122,22 @@ public class Browser implements Initializable {
         if (url.isEmpty()) return;
         if (url.isBlank()) return;
 
-        if (url.startsWith("oac-local://")) {
+        if (url.startsWith(SiteType.LOCAL.name)) {
             loadLocalDomain(url);
             return;
         }
 
-        if (url.startsWith("http://")) url = url.substring(7);
-        if (url.startsWith("https://")) url = url.substring(8);
-        if (url.startsWith("www.")) url = url.substring(4);
-        if (!url.startsWith("oac://")) url = "oac://" + url;
+        if (url.startsWith("http://")) url = url.substring("http://".length());
+        if (url.startsWith("https://")) url = url.substring("https://".length());
+        if (url.startsWith("www.")) url = url.substring("www.".length());
+        if (!url.startsWith(SiteType.PUBLIC.name)) url = SiteType.PUBLIC.name + "://" + url;
 
         String tld = DomainUtils.getTopLevelDomain(url);
         String name = DomainUtils.getDomainName(url);
+        String path = DomainUtils.getPath(url);
 
         // TODO: Navigate
-        Main.protocolBridge.getProtocolClient().resolveSite(new RequestDomain(name, tld));
+        Main.protocolBridge.getProtocolClient().resolveSite(new RequestDomain(name, tld, path));
     }
 
     private void loadLocalDomain(String url) throws IOException, URISyntaxException, ClassNotFoundException {
@@ -134,21 +145,16 @@ public class Browser implements Initializable {
         if (url.isEmpty()) return;
         if (url.isBlank()) return;
 
-        if (url.startsWith("oac//") || url.startsWith("http://") || url.startsWith("Https://") || url.startsWith("www.")) {
+        if (url.startsWith(SiteType.PUBLIC.name) || url.startsWith("http://") || url.startsWith("Https://") || url.startsWith("www.")) {
             navigate(url);
             return;
         }
 
-        if (!url.startsWith("oac-local://")) url = "oac-local://" + url;
-        File file = new File(url.substring(12));
+        if (!url.startsWith(SiteType.LOCAL.name)) url = SiteType.LOCAL.name + "://" + url;
+        File file = new File(url.substring((SiteType.LOCAL.name + "://").length()));
 
         if (!file.exists()) {
-            try {
-                loadFile(new File(getClass().getResource("sites/file_not_found.html").toURI()));
-            } catch (URISyntaxException exception) {
-                exception.printStackTrace();
-            }
-
+            loadHtml(SiteType.PROTOCOL, new LocalDomain("file-not-found", "html", ""), WebsitesContent.FILE_NOT_FOUND);
             return;
         }
 
@@ -229,7 +235,7 @@ public class Browser implements Initializable {
     }
 
     public void loadFile(File file) {
-        domainInput.setText("oac-local://" + file.getAbsolutePath());
+        domainInput.setText(SiteType.LOCAL.name + "://" + file.getAbsolutePath());
 
         Platform.runLater(() -> {
             webView.getEngine().load(file.toURI().toString());
