@@ -13,7 +13,6 @@ Discord: https://discord.gg/ef8cyW4t7p
 - Cleanup Code
 # TODO
 - Subdomains
-- Path
 - Fragments
 - Query
 - Custom Start page

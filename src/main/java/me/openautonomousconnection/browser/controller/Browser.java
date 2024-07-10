@@ -9,6 +9,9 @@
 package me.openautonomousconnection.browser.controller;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,6 +35,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventListener;
+import org.w3c.dom.events.EventTarget;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -232,6 +238,33 @@ public class Browser implements Initializable {
 
             MessageDialog.show("Version check could not completed! Visit our GitHub:\nhttps://github.com/Open-Autonomous-Connection/");
         }
+
+        webView.getEngine().getLoadWorker().stateProperty().addListener((observableValue, oldState, newState) -> {
+            if (newState == Worker.State.SUCCEEDED) {
+                EventListener eventListener = evt -> {
+                    String type = evt.getType();
+                    if (type.equalsIgnoreCase("click")) {
+                        String href = ((Element) evt.getTarget()).getAttribute("href");
+
+                        try {
+                            if (href.startsWith(SiteType.PUBLIC.name + "://")) navigate(href);
+                            if (href.startsWith(SiteType.LOCAL.name + "://")) loadLocalDomain(href);
+                        } catch (IOException | URISyntaxException | ClassNotFoundException exception) {
+                            loadHtml(SiteType.PROTOCOL, new LocalDomain("error-occurred", "html", ""), WebsitesContent.ERROR_OCCURRED(exception.getMessage()));
+                        }
+                    }
+                };
+
+                Document doc = webView.getEngine().getDocument();
+                NodeList nodeList = doc.getElementsByTagName("a");
+
+                for (int i = 0; i < nodeList.getLength(); i++) {
+                    ((EventTarget) nodeList.item(i)).addEventListener("click", eventListener, false);
+                    //((EventTarget) nodeList.item(i)).addEventListener(EVENT_TYPE_MOUSEOVER, listener, false);
+                    //((EventTarget) nodeList.item(i)).addEventListener(EVENT_TYPE_MOUSEOVER, listener, false);
+                }
+            }
+        });
     }
 
     public void loadFile(File file) {
@@ -244,11 +277,12 @@ public class Browser implements Initializable {
     }
 
     public void loadHtml(SiteType siteType, Domain domain, String htmlContent) {
-        domainInput.setText(siteType.name + "://" + domain.name + "." + domain.topLevelDomain);
+        domainInput.setText(siteType.name + "://" + domain.name + "." + domain.topLevelDomain + "/" + domain.getPath());
 
         Platform.runLater(() -> {
-        webView.getEngine().loadContent(htmlContent);
-        if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
+            if (siteType == SiteType.PUBLIC) webView.getEngine().load((domain.parsedDestination().startsWith("http://") ? "" : "http://") + domain.parsedDestination());
+            else webView.getEngine().loadContent(htmlContent);
+            if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
         });
     }
 }

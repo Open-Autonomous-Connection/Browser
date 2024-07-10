@@ -120,7 +120,7 @@
         <dependency>
             <groupId>me.openautonomousconnection.protocol</groupId>
             <artifactId>protocol</artifactId>
-            <version>1.0.2-PRE</version>
+            <version>1.0.2</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
