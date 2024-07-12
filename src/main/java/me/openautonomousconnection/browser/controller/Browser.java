@@ -39,11 +39,13 @@ import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -243,12 +245,23 @@ public class Browser implements Initializable {
             if (newState == Worker.State.SUCCEEDED) {
                 EventListener eventListener = evt -> {
                     String type = evt.getType();
+
                     if (type.equalsIgnoreCase("click")) {
                         String href = ((Element) evt.getTarget()).getAttribute("href");
 
                         try {
+                            if (href.startsWith("http") || href.startsWith("https://")) {
+                                if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) Desktop.getDesktop().browse(new URI(href));
+                                else MessageDialog.show("Failed to load Website " + href);
+
+                                return;
+                            }
+
                             if (href.startsWith(SiteType.PUBLIC.name + "://")) navigate(href);
-                            if (href.startsWith(SiteType.LOCAL.name + "://")) loadLocalDomain(href);
+                            else {
+                                String base = "oac://" + DomainUtils.getDomainName(domainInput.getText()) + "." + DomainUtils.getTopLevelDomain(domainInput.getText()) + "/";
+                                navigate(base + (href.startsWith("/") ? href.substring("/".length()) : href));
+                            }
                         } catch (IOException | URISyntaxException | ClassNotFoundException exception) {
                             loadHtml(SiteType.PROTOCOL, new LocalDomain("error-occurred", "html", ""), WebsitesContent.ERROR_OCCURRED(exception.getMessage()));
                         }
@@ -265,6 +278,26 @@ public class Browser implements Initializable {
                 }
             }
         });
+
+        // TODO: Crash on header redirect. Fixing later
+//        webView.getEngine().locationProperty().addListener((obs, oldLocation, newLocation) -> {
+//            try {
+//                if (newLocation.startsWith("http") || newLocation.startsWith("https://")) {
+//                    if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) Desktop.getDesktop().browse(new URI(newLocation));
+//                    else MessageDialog.show("Failed to load Website " + newLocation);
+//
+//                    return;
+//                }
+//
+//                if (newLocation.startsWith(SiteType.PUBLIC.name + "://")) navigate(newLocation);
+//                else {
+//                    String base = "oac://" + DomainUtils.getDomainName(domainInput.getText()) + "." + DomainUtils.getTopLevelDomain(domainInput.getText()) + "/";
+//                    navigate(base + (newLocation.startsWith("/") ? newLocation.substring("/".length()) : newLocation));
+//                }
+//            } catch (IOException | URISyntaxException | ClassNotFoundException exception) {
+//                loadHtml(SiteType.PROTOCOL, new LocalDomain("error-occurred", "html", ""), WebsitesContent.ERROR_OCCURRED(exception.getMessage()));
+//            }
+//        });
     }
 
     public void loadFile(File file) {
