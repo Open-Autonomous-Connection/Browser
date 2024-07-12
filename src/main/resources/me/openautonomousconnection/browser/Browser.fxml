@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.*?>
+
 <!--
   ~ Copyright (C) 2024 Open Autonomous Connection - All Rights Reserved
   ~
@@ -12,26 +12,16 @@
   ~ See LICENSE-File if exists
   -->
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="580.0" prefWidth="855.0"
-            xmlns="http://javafx.com/javafx/17.0.2-ea"
-            fx:controller="me.openautonomousconnection.browser.controller.Browser">
+<AnchorPane prefHeight="580.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.openautonomousconnection.browser.controller.Browser">
     <children>
-        <Button fx:id="btnHome" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#onHomeClick"
-                prefHeight="45.0" prefWidth="105.0" text="Home"/>
-        <Button fx:id="btnBackward" layoutX="630.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBackwardClick"
-                prefHeight="45.0" prefWidth="105.0" text="Backward"/>
-        <Button fx:id="btnReload" layoutX="125.0" layoutY="15.0" mnemonicParsing="false" onAction="#onReloadClick"
-                prefHeight="45.0" prefWidth="105.0" text="Reload"/>
-        <Button fx:id="btnGo" layoutX="520.0" layoutY="15.0" mnemonicParsing="false" onAction="#onGoClick"
-                prefHeight="45.0" prefWidth="105.0" text="Go"/>
-        <Button fx:id="btnForward" layoutX="740.0" layoutY="15.0" mnemonicParsing="false" onAction="#onForwardClick"
-                prefHeight="45.0" prefWidth="105.0" text="Forward"/>
-        <Button fx:id="btnSettings" layoutX="235.0" layoutY="70.0" mnemonicParsing="false" onAction="#onSettingsClick"
-                text="Settings"/>
-        <Button fx:id="btnHistory" layoutX="440.0" layoutY="70.0" mnemonicParsing="false" onAction="#onHistoryClick"
-                prefHeight="25.0" prefWidth="75.0" text="History"/>
-        <TextField fx:id="domainInput" layoutX="235.0" layoutY="15.0" prefHeight="45.0" prefWidth="275.0"
-                   promptText="oac://" text="oac://browser-start.root/"/>
-        <WebView fx:id="webView" layoutX="15.0" layoutY="105.0" prefHeight="465.0" prefWidth="835.0"/>
+        <Button fx:id="btnHome" mnemonicParsing="false" onAction="#onHomeClick" prefHeight="45.0" prefWidth="105.0" text="Home" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+        <Button fx:id="btnBackward" mnemonicParsing="false" onAction="#onBackwardClick" prefHeight="45.0" prefWidth="105.0" text="Backward" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="15.0" />
+        <Button fx:id="btnReload" mnemonicParsing="false" onAction="#onReloadClick" prefHeight="45.0" prefWidth="105.0" text="Reload" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="15.0" />
+        <Button fx:id="btnGo" mnemonicParsing="false" onAction="#onGoClick" prefHeight="45.0" prefWidth="105.0" text="Go" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="15.0" />
+        <Button fx:id="btnForward" mnemonicParsing="false" onAction="#onForwardClick" prefHeight="45.0" prefWidth="105.0" text="Forward" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0" />
+        <Button fx:id="btnSettings" mnemonicParsing="false" onAction="#onSettingsClick" text="Settings" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="70.0" />
+        <Button fx:id="btnHistory" mnemonicParsing="false" onAction="#onHistoryClick" prefHeight="25.0" prefWidth="75.0" text="History" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="70.0" />
+        <TextField fx:id="domainInput" prefHeight="45.0" promptText="oac://" text="oac://browser-start.root/" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="345.0" AnchorPane.topAnchor="15.0" />
+        <WebView fx:id="webView" prefHeight="465.0" prefWidth="835.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="105.0" />
     </children>
 </AnchorPane>
