@@ -11,8 +11,6 @@ module me.openautonomousconnection.browser {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.desktop;
-    requires jcefmaven;
-    requires jcef;
     requires json.simple;
     requires java.sql;
     requires protocol;

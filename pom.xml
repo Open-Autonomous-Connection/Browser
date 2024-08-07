@@ -120,18 +120,13 @@
         <dependency>
             <groupId>me.openautonomousconnection.protocol</groupId>
             <artifactId>protocol</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>me.friwi</groupId>
-            <artifactId>jcefmaven</artifactId>
-            <version>122.1.10</version>
         </dependency>
         <dependency>
             <groupId>me.finn.unlegitlibrary</groupId>
             <artifactId>unlegitlibrary</artifactId>
-            <version>1.3</version>
+            <version>1.5.2-Java1.8</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

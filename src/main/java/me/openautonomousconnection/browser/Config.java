@@ -25,8 +25,8 @@ public class Config {
         config = new ConfigurationManager(configFile);
         config.loadProperties();
 
-        if (!config.isSet("dns.host")) config.set("dns.host", "82.197.95.202");
-        if (!config.isSet("dns.port")) config.set("dns.port", 9382);
+        if (!config.isSet("dns.host")) config.set("dns.host", Main.protocolBridge.getProtocolSettings().host);
+        if (!config.isSet("dns.port")) config.set("dns.port", Main.protocolBridge.getProtocolSettings().port);
 
         if (!config.isSet("api.username")) config.set("api.username", "");
         if (!config.isSet("api.application")) config.set("api.application", "");
