@@ -313,8 +313,8 @@ public class Browser implements Initializable {
         domainInput.setText(siteType.name + "://" + domain.name + "." + domain.topLevelDomain + "/" + domain.getPath());
 
         Platform.runLater(() -> {
-            if (siteType == SiteType.PUBLIC) webView.getEngine().load((domain.parsedDestination().startsWith("http://") ? "" : "http://") + domain.parsedDestination());
-            else webView.getEngine().loadContent(htmlContent);
+            System.out.println(siteType.name);
+            webView.getEngine().loadContent(htmlContent);
             if (stage != null) stage.setTitle("Open Autonomous Connection - " + getTitle(webView.getEngine()));
         });
     }
