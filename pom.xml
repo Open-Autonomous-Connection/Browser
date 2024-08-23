@@ -120,13 +120,13 @@
         <dependency>
             <groupId>me.openautonomousconnection.protocol</groupId>
             <artifactId>protocol</artifactId>
-            <version>1.0.6</version>
+            <version>1.0.7</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>me.finn.unlegitlibrary</groupId>
             <artifactId>unlegitlibrary</artifactId>
-            <version>1.5.2-Java1.8</version>
+            <version>1.5.3-Java1.8</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
