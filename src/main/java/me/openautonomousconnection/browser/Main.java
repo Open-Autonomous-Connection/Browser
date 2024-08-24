@@ -80,10 +80,9 @@ public class Main extends Application {
                 }
             });
 
+            launch(args);
             return;
         }
-
-        launch(args);
     }
 
     @Override

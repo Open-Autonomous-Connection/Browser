@@ -24,7 +24,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>github</id>
+            <id>unlegitlibrary</id>
             <url>https://maven.pkg.github.com/unlegitdqrk/unlegitlibrary</url>
             <snapshots>
                 <enabled>true</enabled>

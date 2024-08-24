@@ -7,6 +7,11 @@
       <option name="url" value="https://maven.pkg.github.com/unlegitdqrk/unlegitlibrary" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="unlegitlibrary" />
+      <option name="name" value="unlegitlibrary" />
+      <option name="url" value="https://maven.pkg.github.com/unlegitdqrk/unlegitlibrary" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />
@@ -35,6 +40,11 @@
       <option name="id" value="jboss.community" />
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="oac-protocol" />
+      <option name="name" value="oac-protocol" />
+      <option name="url" value="https://maven.pkg.github.com/open-autonomous-connection/protocol" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="central" />
